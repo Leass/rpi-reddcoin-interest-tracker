@@ -27,9 +27,9 @@ email_smtp_server="smtp.gmail.com:587"
 
 def sendemail(message):
                
-    header  = 'From: %s\n' + email_from_addr
-    header += 'To: %s\n' + email_to_addr
-    header += 'Subject: %s\n\n' + email_subject
+    header  = 'From: ' + email_from_addr + "\n"
+    header += 'To: ' + email_to_addr + "\n"
+    header += 'Subject: ' + email_subject + datetime.datetime.now().strftime(" at %H:%M:%S") + "\n\n"
     message = header + message
 
     server = smtplib.SMTP(email_smtp_server)
