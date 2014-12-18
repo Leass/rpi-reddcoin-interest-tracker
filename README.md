@@ -42,6 +42,13 @@ Example wallet unlock:
 
 (None = success, anything else = failure)
 
+Example get staking info
+------------------------
+
+* python /home/pi/uReddRpc.py getstakinginfo
+
+Returns the JSON information about your current staking status
+
 Example root crontab:
 ---------------------
 
