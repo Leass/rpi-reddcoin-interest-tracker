@@ -10,18 +10,20 @@ speaker attached on this pin) and sends an e-mail to the specified recipient.
 
 Script requires the following libraries to run correctly
 
-Bitcoinrpc (Thanks to jgarzik et.al for his excellent RPC lib)
+Bitcoinrpc
 ----------
 
 https://github.com/jgarzik/python-bitcoinrpc
 
+(Thanks to jgarzik et.al for his excellent RPC lib)
+
 RPi.GPIO
 --------
 
-wget http://pypi.python.org/packages/source/R/RPi.GPIO/RPi.GPIO-0.1.0.tar.gz
-tar zxf RPi.GPIO-0.1.0.tar.gz
-cd RPi.GPIO-0.1.0
-sudo python setup.py install
+* wget http://pypi.python.org/packages/source/R/RPi.GPIO/RPi.GPIO-0.1.0.tar.gz
+* tar zxf RPi.GPIO-0.1.0.tar.gz
+* cd RPi.GPIO-0.1.0
+* sudo python setup.py install
 
 The script's other included function allows you to unlock the wallet for staking in the first place. This avoids you having 
 to flush your terminal history every time you re-launch reddcoind. If unlock is successful then the command should return
@@ -33,7 +35,7 @@ The script contains print statements so you will need to pipe the output in cron
 Example root crontab: (root so we have access to the GPIO pins)
 ---------------------
 
-* * * * * python /home/pi/uReddrpc.py getinterest >> /home/pi/uReddrpc.log
+\* * * * * python /home/pi/uReddrpc.py getinterest >> /home/pi/uReddrpc.log
 
 Example terminal launch:
 ------------------------
