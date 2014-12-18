@@ -32,6 +32,16 @@ to flush your terminal history every time you re-launch reddcoind. If unlock is 
 The script contains print statements so you will need to pipe the output in cron to a log file or null to avoid a cron e-mail
 **** storm every time the script runs
 
+Example wallet unlock:
+---------------------
+
+* python /home/pi/uReddrpc.py unlockforstaking
+* Enter wallet passphrase: ##########
+* None
+* $
+
+(None = success, anything else = failure)
+
 Example root crontab:
 ---------------------
 
@@ -42,4 +52,4 @@ Example root crontab:
 Example terminal launch:
 ------------------------
 
-sudo python /home/pi/uReddrpc.py getinterest
+* sudo python /home/pi/uReddrpc.py getinterest
