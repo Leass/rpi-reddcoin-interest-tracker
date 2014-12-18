@@ -5,9 +5,9 @@ import RPi.GPIO as GPIO
 import datetime
 import smtplib
 import time
+import pygame
 import os
 import sys
-import string
 import getpass
 
 # ===== BEGIN USER SETTINGS =====
@@ -16,6 +16,7 @@ rpcuser = "YOUR_RPC_USERNAME"
 rpcpass = "YOUR_RPC_PASSWORD"
 rpcport = "45443"
 
+wav_file_location = "/home/pi/coin.wav"
 email_from_addr = "YOUR_FROM_EMAIL_ADDRESS"
 email_to_addr = "YOUR_DESTINATION_EMAIL_ADDRESS"
 email_subject = "New Reddcoin stake event"
@@ -37,8 +38,35 @@ def sendemail(message):
     server.login(email_login,email_password)
     problems = server.sendmail(email_from_addr, email_to_addr, message)
     server.quit()
+    
+    if problems == "":
+        print "Email sent to " + str(email_to_addr)
+    else:
+        print "Error: " + problems
 
-    print "Email sent to " + str(email_to_addr)
+    return
+    
+def beepGpioSpeaker():
+    
+    GPIO.setup(12, GPIO.OUT)
+    GPIO.output(12, True)
+    time.sleep(0.1)
+    GPIO.output(12, False)
+    time.sleep(0.05)
+    GPIO.output(12, True)
+    time.sleep(0.1)
+    GPIO.output(12, False)
+    
+    return
+    
+def playWavFile():
+    
+    pygame.mixer.init()
+    pygame.mixer.music.load("wav_file_location")
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy() == True:
+        continue
+  
     return
 
 access = AuthServiceProxy("http://"+rpcuser+":"+rpcpass+"@127.0.0.1:" + rpcport)
@@ -71,14 +99,7 @@ if cmd == "getinterest":
 
                 print "New stake event totalling " + str(new_total) + " coins"
 
-                GPIO.setup(12, GPIO.OUT)
-                GPIO.output(12, True)
-                time.sleep(0.1)
-                GPIO.output(12, False)
-                time.sleep(0.05)
-                GPIO.output(12, True)
-                time.sleep(0.1)
-                GPIO.output(12, False)
+                beepGpioSpeaker()
 
                 fh.seek(0)
                 fh.write(str(current_interest))
@@ -116,3 +137,5 @@ else:
     print "Command not found or not supported"
 
 print datetime.datetime.now().strftime("Finished at %H:%M:%S, ") + datetime.date.today().strftime("%d %b %Y")
+
+playWavFile()
