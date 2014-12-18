@@ -106,6 +106,12 @@ elif cmd == "unlockforstaking":
     except JSONRPCException as e:
         print "JSONRPCException: ({0})".format(e.error)
 
+elif cmd == "getstakinginfo":
+    try:
+        print access.getstakinginfo()
+    except:
+        print "Error"
+
 else:
     print "Command not found or not supported"
 
