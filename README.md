@@ -32,10 +32,12 @@ to flush your terminal history every time you re-launch reddcoind. If unlock is 
 The script contains print statements so you will need to pipe the output in cron to a log file or null to avoid a cron e-mail
 **** storm every time the script runs
 
-Example root crontab: (root so we have access to the GPIO pins)
+Example root crontab:
 ---------------------
 
 \* * * * * python /home/pi/uReddrpc.py getinterest >> /home/pi/uReddrpc.log
+
+(root so we have access to the GPIO pins)
 
 Example terminal launch:
 ------------------------
