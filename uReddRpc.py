@@ -115,4 +115,4 @@ elif cmd == "getstakinginfo":
 else:
     print "Command not found or not supported"
 
-print datetime.datetime.now().strftime("Finished at %H:%M:%S, ") + datetime.date.today().strftime("%d %b %Y")
+print datetime.datetime.now().strftime("Finished at %H:%M:%S, ") + datetime.date.today().strftime("%d %b %Y\n")

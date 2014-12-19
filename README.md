@@ -8,6 +8,9 @@ It maintains a file in the /tmp directory on the RPi that records the current am
 amount is found to have changed (aka a wallet stake event has matured) it pulses the GPIO 18 pin (I have a cheap 3.3v piezo 
 speaker attached on this pin) and sends an e-mail to the specified recipient.
 
+I am using the gmail smtp server to send email from Python, its free and easy to setup (but it does require you to set up the
+gmail account to allow external application access to the smtp server)
+
 Script requires the following libraries to run correctly
 
 Bitcoinrpc
