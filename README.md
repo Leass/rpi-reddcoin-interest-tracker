@@ -8,6 +8,13 @@ It maintains a file in the /tmp directory on the RPi that records the current am
 amount is found to have changed (aka a wallet stake event has matured) it pulses the GPIO 18 pin (I have a cheap 3.3v piezo 
 speaker attached on this pin) and sends an e-mail to the specified recipient.
 
+
+Note for .wav users: 
+
+Audio quality on the RPi is less than stellar however running this command in the console seems to help:
+
+* amixer set PCM -- 1000
+
 Changelog
 ---------
 

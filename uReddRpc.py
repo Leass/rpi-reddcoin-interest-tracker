@@ -10,7 +10,9 @@ import os
 import sys
 import getpass
 
+##################
 rpcport = "45443"
+##################
 
 # Load the config file
 def loadConfigFile(file_path):
@@ -84,7 +86,7 @@ def beepGpioSpeaker():
 #Play the specified .wav file
 def playWavFile():
     
-    pygame.mixer.init()
+    pygame.mixer.init(48000, -16, 1, 4096)
     pygame.mixer.music.load(getSetting("wav_file_location"))
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
