@@ -60,9 +60,9 @@ to flush your terminal history every time you re-launch reddcoind. If unlock is 
 Config file
 -----------
 
-The script now checks a config file to pick up the user settings for passwords / email settings 
+The script now checks a config file to pick up the user settings for passwords / email / reddcoind settings 
 
-**uReddRpc.log**
+**uReddRpc.conf**
 
 The location of this config file must be specified when launching the script as an argument:
 
