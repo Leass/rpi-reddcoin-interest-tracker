@@ -1,6 +1,7 @@
+#!/usr/bin/env python
+
 from bitcoinrpc.authproxy import AuthServiceProxy
 from bitcoinrpc.authproxy import JSONRPCException
-
 import RPi.GPIO as GPIO
 import datetime
 import smtplib
@@ -9,10 +10,6 @@ import pygame
 import os
 import sys
 import getpass
-
-##################
-rpcport = "45443"
-##################
 
 # Load the config file
 def loadConfigFile(file_path):
@@ -102,9 +99,17 @@ def main():
     
     loadConfigFile(sys.argv[2])   
 
-    access = AuthServiceProxy("http://"+getSetting("rpcuser")+":"+getSetting("rpcpass")+"@127.0.0.1:" + rpcport)
+    if getSetting("rpcaddress") == "":
+	print("No RPC address specified!")
+	sys.exit(1)
+
+    if getSetting("rpcport") == "":
+        print("No RPC port specified!")
+        sys.exit(1)
+
+    access = AuthServiceProxy("http://"+getSetting("rpcuser")+":"+getSetting("rpcpass") + "@" + getSetting("rpcaddress") + ":" + getSetting("rpcport"))
     
-    #print("http://"+getSetting("rpcuser")+ ":" + getSetting("rpcpass") + "@127.0.0.1:" + rpcport)
+    #print("http://"+getSetting("rpcuser")+ ":" + getSetting("rpcpass") + "@" + getSetting("rpcaddress") + ":" + getSetting("rpcport"))
     
     cmd = sys.argv[1].lower()
 
@@ -113,7 +118,7 @@ def main():
         try:
     
             current_interest = access.getinterest()
-            #print("JSON Received: '" + str(current_interest) + "'")
+            print("Total interest received: " + str(current_interest) + " rdd")
     
             fname = "/tmp/my_interest.log"
     
