@@ -144,7 +144,7 @@ def main():
                     fh.write(str(current_interest))
                     fh.close()
     
-                    sendemail(message = "New stake event totalling " + str(new_total) + " coins")
+                    sendemail(message = "New stake event totalling " + str(new_total) + " coins, " + str(current_interest) + " total interest generated.")
            
             else:
     
